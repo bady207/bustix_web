@@ -37,7 +37,7 @@
 1. **Clone Repository**
 
 bash
-git clone https://github.com/adhiariyadi/Ticket-Laravel.git
+git clone https://github.com/bady207/bustix_web
 cd Ticket-Laravel
 composer install
 cp .env.example .env
