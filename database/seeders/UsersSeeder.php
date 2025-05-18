@@ -15,11 +15,11 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
+        DB::table('users')->updateOrInsert([
             'id' => 1,
             'name' => 'Admin',
-            'username' => 'admin',
-            'password' => Hash::make('admin123'),
+            'username' => 'admin@gmail.com',
+            'password' => Hash::make('11111111'),
             'level' => 'Admin',
             'created_at' => date('Y-m-d H:i:s'),
             'updated_at' => date('Y-m-d H:i:s')

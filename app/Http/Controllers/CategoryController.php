@@ -77,7 +77,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-        // 
+        //
     }
 
     /**
@@ -89,7 +89,17 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required'
+        ]);
+
+        $category = Category::findOrFail($id);
+        $category->update([
+            'name' => $request->name,
+            'slug' => strtolower(Str::slug($request->name))
+        ]);
+
+        return redirect()->route('category.index')->with('success', 'Success Update Category!');
     }
 
     /**

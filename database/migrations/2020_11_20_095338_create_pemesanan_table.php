@@ -19,13 +19,13 @@ class CreatePemesananTable extends Migration
             $table->string('kursi')->nullable();
             $table->timestamp('waktu');
             $table->integer('total');
-            $table->enum('status', ['Belum Bayar', 'Sudah Bayar'])->default('Belum Bayar');
-            $table->unsignedBigInteger('rute_id');
-            $table->unsignedBigInteger('penumpang_id');
-            $table->unsignedBigInteger('petugas_id')->nullable();
+            $table->string('status')->default('pending');
+            $table->unsignedBigInteger('rute_id')->cascadeOnDelete();
+            $table->unsignedBigInteger('penumpang_id')->cascadeOnDelete();
+            $table->unsignedBigInteger('petugas_id')->nullable()->cascadeOnDelete();
             $table->timestamps();
 
-            $table->foreign('rute_id')->references('id')->on('rute');
+            $table->foreign('rute_id')->references('id')->on('rute')->onDelete('cascade');
             $table->foreign('penumpang_id')->references('id')->on('users');
             $table->foreign('petugas_id')->references('id')->on('users');
         });

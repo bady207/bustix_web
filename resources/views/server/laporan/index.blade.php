@@ -33,12 +33,12 @@
   <div class="card shadow mb-4">
     <div class="card-header py-3">
       <!-- Button trigger modal -->
-      <button
+      {{-- <button
         type="button"
         class="btn btn-primary btn-sm btn-add"
       >
         <i class="fas fa-plus"></i>
-      </button>
+      </button> --}}
     </div>
     <div class="card-body">
       <div class="table-responsive">

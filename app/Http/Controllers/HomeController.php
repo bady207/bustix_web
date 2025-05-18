@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Pemesanan;
 use App\Models\Rute;
 use App\Models\Transportasi;
@@ -28,9 +29,10 @@ class HomeController extends Controller
     public function index()
     {
         $rute = Rute::count();
+        $kategori = Category::count();
         $pendapatan = Pemesanan::where('status', 'Sudah Bayar')->sum('total');
         $transportasi = Transportasi::count();
-        $user = User::count();
-        return view('server.home', compact('rute', 'pendapatan', 'transportasi', 'user'));
+        $user = User::where('level', 'Penumpang')->count();
+        return view('server.home', compact('rute', 'pendapatan', 'transportasi', 'user','kategori'));
     }
 }

@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\MidtransController;
+use App\Http\Controllers\PemesananController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -37,11 +39,16 @@ Route::middleware(['auth'])->group(function () {
         });
     });
 
+
     Route::middleware(['penumpang'])->group(function () {
         Route::get('/pesan/{kursi}/{data}', [App\Http\Controllers\PemesananController::class, 'pesan'])->name('pesan');
         Route::get('/cari/kursi/{data}', [App\Http\Controllers\PemesananController::class, 'edit'])->name('cari.kursi');
+        // Route::get('/cari/kursi/{id}', [PemesananController::class, 'tampilkanKursi'])->name('cari.kursi');
         Route::resource('/', App\Http\Controllers\PemesananController::class);
         Route::get('/history', [App\Http\Controllers\LaporanController::class, 'history'])->name('history');
         Route::get('/{id}/{data}', [App\Http\Controllers\PemesananController::class, 'show'])->name('show');
+        Route::post('/midtrans/create-transaction', [MidtransController::class, 'createTransaction']);
+        Route::post('/midtrans/callback', [MidtransController::class, 'paymentCallback']);
+
     });
 });

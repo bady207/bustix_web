@@ -70,7 +70,7 @@
   </style>
 @endsection
 @section('content')
-  <div class="card shadow mb-4">
+<div class="card shadow mb-4">
     <div class="card-header py-3">
       <!-- Button trigger modal -->
       <button
@@ -94,7 +94,7 @@
             <tr>
               <td>No</td>
               <td>Name</td>
-              <td>Username</td>
+              <td>Email</td>
               <td>Level</td>
               <th>Action</th>
             </tr>
@@ -107,20 +107,17 @@
                 <td>{{ $data->username }}</td>
                 <td>{{ $data->level }}</td>
                 <td>
-                  <form
-                    action="{{ route('user.destroy', $data->id) }}"
-                    method="POST"
-                  >
-                    @csrf
-                    @method('delete')
-                    <button
-                      type="submit"
-                      class="btn btn-danger btn-sm btn-circle"
-                      onclick="return confirm('Yakin');"
-                    >
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </form>
+                    @if(strtolower($data->level) !== 'admin')
+                        <form action="{{ route('user.destroy', $data->id) }}" method="POST">
+                            @csrf
+                            @method('delete')
+                            <button type="submit" class="btn btn-danger btn-sm btn-circle" onclick="return confirm('Yakin?');">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    @else
+                        <span class="text-muted">No Action</span>
+                    @endif
                 </td>
               </tr>
             @endforeach
@@ -128,7 +125,8 @@
         </table>
       </div>
     </div>
-  </div>
+</div>
+
   <!-- Add Modal -->
   <div
   class="modal fade"
@@ -166,13 +164,13 @@
               />
             </div>
             <div class="form-group">
-              <label for="username">Username</label>
+              <label for="username">Email</label>
               <input
-                type="text"
+                type="email"
                 class="form-control"
                 id="username"
                 name="username"
-                placeholder="Username"
+                placeholder="email"
                 required
               />
             </div>

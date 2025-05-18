@@ -102,6 +102,10 @@
               <td class="text-right">{{ $data->rute->transportasi->name }} ({{ $data->rute->transportasi->kode }})</td>
             </tr>
             <tr>
+              <td>Kategori</td>
+              <td class="text-right">{{ $data->rute->transportasi->category->name }} </td>
+            </tr>
+            <tr>
               <td>Nama Penumpang</td>
               <td class="text-right">{{ $data->penumpang->name }}</td>
             </tr>

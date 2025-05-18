@@ -21,16 +21,14 @@ class Transportasi extends Model
         return $this->belongsTo('App\Models\Category', 'category_id');
     }
 
-    public function kursi($id)
+    public function kursi($data)
     {
-        $data = json_decode($id, true);
-        $kursi = Pemesanan::where('rute_id', $data['rute'])->where('waktu', $data['waktu'])->where('kursi', $data['kursi'])->count();
-        if ($kursi > 0) {
-            return null;
-        } else {
-            return $id;
-        }
+        return Pemesanan::where('rute_id', $data['rute'])
+            ->where('waktu', $data['waktu'])
+            ->where('kursi', $data['kursi'])
+            ->exists() ? null : $data;
     }
+
 
     protected $table = 'transportasi';
 }

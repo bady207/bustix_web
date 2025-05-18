@@ -110,7 +110,9 @@ class PemesananController extends Controller
         $rute = Rute::with('transportasi')->where('start', $data['start'])->where('end', $data['end'])->get();
         if ($rute->count() > 0) {
             foreach ($rute as $val) {
-                $pemesanan = Pemesanan::where('rute_id', $val->id)->where('waktu')->count();
+                $pemesanan = Pemesanan::where('rute_id', $val->id)
+                    ->where('waktu', $data['waktu'])
+                    ->count();
                 if ($val->transportasi) {
                     $kursi = Transportasi::find($val->transportasi_id)->jumlah - $pemesanan;
                     if ($val->transportasi->category_id == $category->id) {
@@ -143,12 +145,23 @@ class PemesananController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        $data = Crypt::decrypt($id);
-        $rute = Rute::find($data['id']);
-        $transportasi = Transportasi::find($rute->transportasi_id);
-        return view('client.kursi', compact('data', 'transportasi'));
-    }
+{
+    $data = Crypt::decrypt($id);
+    $rute = Rute::find($data['id']);
+    $transportasi = Transportasi::find($rute->transportasi_id);
+
+
+    // Ambil kursi yang sudah dipesan berdasarkan rute & waktu
+    $pemesanan = Pemesanan::where('rute_id', $rute->id)
+        ->pluck('kursi') // Ambil hanya kolom 'kursi'
+        ->toArray(); // Ubah ke array supaya bisa dicek dengan in_array()
+
+
+
+
+    return view('client.kursi', compact('data', 'pemesanan', 'transportasi'));
+}
+
 
     /**
      * Update the specified resource in storage.
@@ -173,6 +186,7 @@ class PemesananController extends Controller
         //
     }
 
+
     public function pesan($kursi, $data)
     {
         $d = Crypt::decrypt($data);
@@ -194,4 +208,5 @@ class PemesananController extends Controller
 
         return redirect('/')->with('success', 'Pemesanan Tiket ' . $rute->transportasi->category->name . ' Success!');
     }
+
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -97,9 +98,23 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        User::find($id)->delete();
-        return redirect()->back()->with('success', 'Success Delete User!');
+        // Cek apakah user memiliki tiket di tabel pemesanan
+        $cekTiket = DB::table('pemesanan')->where('penumpang_id', $id)->exists();
+
+        if ($cekTiket) {
+            return redirect()->back()->with('error', 'Maaf, user tersebut memiliki tiket.');
+        }
+
+        // Jika tidak memiliki tiket, hapus user
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return redirect()->back()->with('success', 'User berhasil dihapus.');
+        }
+
+        return redirect()->back()->with('error', 'User tidak ditemukan.');
     }
+
 
     public function name(Request $request)
     {

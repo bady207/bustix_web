@@ -20,7 +20,7 @@ class CreateRuteTable extends Migration
             $table->string('end');
             $table->integer('harga');
             $table->time('jam');
-            $table->unsignedBigInteger('transportasi_id');
+            $table->unsignedBigInteger('transportasi_id')->cascadeOnDelete();
             $table->timestamps();
 
             $table->foreign('transportasi_id')->references('id')->on('transportasi');

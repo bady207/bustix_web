@@ -35,5 +35,6 @@ class Pemesanan extends Model
         return $this->belongsTo('App\Models\User', 'petugas_id');
     }
 
+
     protected $table = 'pemesanan';
 }

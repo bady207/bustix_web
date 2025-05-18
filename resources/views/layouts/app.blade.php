@@ -87,8 +87,8 @@
                     - {{ date('Y') }}
                   @endif
                   &nbsp; All rights reserved • by
-                  <a href="https://github.com/adhiariyadi/" target="_blank"
-                    >Adhi Ariyadi</a
+                  <a href="https://www.instagram.com/bdy.ubdllh/" target="_blank"
+                    >Bady Tyson</a
                   >.
                 </span>
               </div>
@@ -150,19 +150,19 @@
         <div class="container">
           @yield('content')
         </div>
-      </div>
+      </div>    
       <!-- Footer -->
       <footer class="sticky-footer bg-white">
         <div class="container my-auto">
           <div class="copyright text-center my-auto">
             <span>
-              Copyright &copy; 2020
-              @if (date('Y') != '2020')
+              Copyright &copy; 2025
+              @if (date('Y') != '2025')
                 - {{ date('Y') }}
               @endif
               &nbsp; All rights reserved • by
-              <a href="https://github.com/adhiariyadi/" target="_blank"
-                >Adhi Ariyadi</a
+              <a href="https://www.instagram.com/bdy.ubdllh/" target="_blank"
+                >Bady Tyson</a
               >.
             </span>
           </div>

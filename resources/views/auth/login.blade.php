@@ -14,7 +14,7 @@
               <form method="POST" action="{{ route('login') }}" class="user">
               @csrf
                 <div class="form-group">
-                  <input type="text" class="form-control form-control-user @error('username') is-invalid @enderror" name="username" required autocomplete="off" placeholder="Username">
+                  <input type="email" class="form-control form-control-user @error('username') is-invalid @enderror" name="username" required autocomplete="off" placeholder="Email">
                   @error('username')
                     <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
