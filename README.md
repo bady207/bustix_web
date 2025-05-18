@@ -19,7 +19,7 @@
 
 ## Release Date
 
-**Release date: 19 Mei 2025**
+**Release date: 05 Juni 2020**
 
 ---
 
@@ -32,12 +32,49 @@
 
 ---
 
-## Instalasi
+## Install
 
 1. **Clone Repository**
 
-```bash
-git clone https://github.com/bady207/bustix_web.git
-cd bustix_web
+bash
+git clone https://github.com/adhiariyadi/Ticket-Laravel.git
+cd Ticket-Laravel
 composer install
 cp .env.example .env
+
+
+2. **Buka .env lalu ubah baris berikut sesuai dengan databasemu yang ingin dipakai**
+
+bash
+DB_PORT=3306
+DB_DATABASE=laravel
+DB_USERNAME=root
+DB_PASSWORD=
+
+
+3. **Instalasi website**
+
+bash
+php artisan key:generate
+php artisan migrate --seed
+
+
+4. **Jalankan website**
+
+bash
+php artisan serve
+
+## Author
+
+-   Facebook : <a href="https://www.facebook.com/profile.php?id=100093433156801&locale=id_ID"> Bady Ubaidillah</a>
+-   LinkedIn : <a href="https://www.linkedin.com/in/bady-ubaidillah-207239339/"> Bady Ubaidillah</a>
+
+## Contributing
+
+Contributions, issues and feature requests di persilahkan.
+Jangan ragu untuk memeriksa halaman masalah jika Anda ingin berkontribusi. **Berhubung Project ini saya sudah selesaikan sendiri, namun banyak fitur yang kalian dapat tambahkan silahkan berkontribusi yaa!**
+
+## License
+
+-   Copyright © 2020 Bady Ubaidillah.
+-   **Ticket is open-sourced software licensed under the MIT license.**
